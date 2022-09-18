@@ -172,6 +172,10 @@ class MyHomePage extends StatelessWidget {
                         'glassmorphism_widget',
                         'https://user-images.githubusercontent.com/82094614/147371522-76db6662-3945-4470-bad3-1dfec306ccd1.png',
                         'https://github.com/yama-yeah/glassmorphism_widgets'),
+                    work(
+                        'flutter_anchorlable',
+                        'https://user-images.githubusercontent.com/82094614/190928346-6dded7dd-abcf-40a2-90a8-cd9f6b43f7ba.gif',
+                        'https://github.com/yama-yeah/flutter_anchorlable'),
                   ],
                 ),
               ],
