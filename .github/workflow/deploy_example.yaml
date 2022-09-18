@@ -2,8 +2,11 @@ name deploy_example
 on:
   pull_request:
     branches:
-      - develop
+      - example
     types: [closed]
+  push:
+    branches:
+      - example
 
 jobs:
   build:
