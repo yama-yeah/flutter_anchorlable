@@ -4,3 +4,20 @@ on:
     branches:
       - develop
     types: [closed]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: cirrusci/flutter:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: build web
+        run: |
+          cd example
+          flutter build web --web-renderer html
+    - name: Deploy to GithubPages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./example/build/web
