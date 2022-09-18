@@ -1,4 +1,4 @@
-name deploy_example
+name: deploy_example
 on:
   pull_request:
     branches:
