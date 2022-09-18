@@ -1,0 +1,6 @@
+name deploy_example
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [closed]
