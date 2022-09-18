@@ -15,7 +15,7 @@ jobs:
       - name: build web
         run: |
           cd example
-          flutter build web --web-renderer html
+          flutter build web --web-renderer html --base-href /flutter_anchorlable/
       - name: Deploy to GithubPages
         uses: peaceiris/actions-gh-pages@v3
         with:
