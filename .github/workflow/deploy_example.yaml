@@ -4,6 +4,9 @@ on:
     branches:
       - example
     types: [closed]
+  push:
+    branches:
+      - example
 
 jobs:
   build:
