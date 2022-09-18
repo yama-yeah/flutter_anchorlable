@@ -2,7 +2,7 @@ name deploy_example
 on:
   pull_request:
     branches:
-      - develop
+      - example
     types: [closed]
 
 jobs:
