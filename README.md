@@ -1,5 +1,6 @@
 # flutter_anchorlable
-This package provides freely scrollable widgets and their controllers, with key as the anchor.
+This package provides freely scrollable widgets and their controllers, with key as the anchor.  
+You can play the demo [here](https://yama-yeah.github.io/flutter_anchorlable/#/)!
 # install
 In the pubspec.yaml of your flutter project, add the following dependency:
 ```yaml
