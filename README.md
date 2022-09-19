@@ -1,4 +1,5 @@
 # flutter_anchorlable
+![Videotogif (1)](https://user-images.githubusercontent.com/82094614/190932053-f3228df0-d264-4427-a17b-bce43f130fa7.gif)
 This package provides freely scrollable widgets and their controllers, with key as the anchor.  
 You can play the demo [here](https://yama-yeah.github.io/flutter_anchorlable/#/)!
 # install
