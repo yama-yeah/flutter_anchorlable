@@ -1,8 +1,9 @@
-name: dry run package on pr
+name: Publish package on merge
 on:
   pull_request:
     branches:
       - master
+    types: [closed]
 
 jobs:
   build:
@@ -17,5 +18,5 @@ jobs:
         cat <<EOF > ~/.pub-cache/credentials.json
         ${{ secrets.CREDENTIAL_JSON }}
         EOF
-    - name: Dry run
-      run: pub publish --dry-run
+    - name: Publish package
+      run: pub publish -f
