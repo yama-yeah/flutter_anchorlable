@@ -1,39 +1,84 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+# flutter_anchorlable
+This package provides freely scrollable widgets and their controllers, with key as the anchor.
+# install
+In the pubspec.yaml of your flutter project, add the following dependency:
+```yaml
+dependencies:
+  flutter_anchorlable: <latest_version>
+```
+In your library add the following import:
+```dart
+import 'package:flutter_anchorlable/flutter_anchorlable.dart';
+```
+# Usage
+`AnchorlableController` is a controller that enables scrolling for widgets owned by the attached client.  
+By specifying `initialAnchorKey`, the initial scroll position of the attached client can be specified.
 
 ```dart
-const like = 'sample';
+final controller=AnchorlableController();
 ```
 
-## Additional information
+`jumpToAnchor` jumps to the specified key.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+controller.jumpToAnchor(anchorKey);
+```
+
+`animateToAnchor` performs animated scrolling for widgets with the target key.  
+If you are not sure which Curve to choose, you may find the [this](https://api.flutter.dev/flutter/animation/Curves-class.html) helpful.
+
+```dart
+onPressed: () async {
+  await controller.animateToAnchor(anchor,
+                duration: const Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn);
+}
+```
+
+`AnchorlableScrollColumn `can be used to arrange widgets vertically.  
+It requires a `Key` and `AnchorlableController`.  
+By using `AnchorlableController`, it is possible to scroll the `widget` with the `Key` existing in the `children`.
+```dart
+final controller=AnchorlableController();
+const bodyKey = GlobalObjectKey('body');
+const anchorKey = GlobalObjectKey('anchor');
+AnchorlableScrollColumn(
+  controller:controller,
+  key: bodyKey,
+  children:[
+    ...
+    Container(
+      child: Text(
+        key:anchorKey,
+        'Widgets you want to anchor'
+        ),
+    ),
+    ...
+  ],
+)
+```
+
+`AnchorlableScrollRow` is a side-by-side version of `AnchorlableScrollColumn`.
+
+```dart
+final controller=AnchorlableController();
+const bodyKey = GlobalObjectKey('body');
+const anchorKey = GlobalObjectKey('anchor');
+AnchorlableScrollRow(
+  controller:controller,
+  key: bodyKey,
+  children:[
+    ...
+    Container(
+      child: Text(
+        key:anchorKey,
+        'Widgets you want to anchor'
+        ),
+    ),
+    ...
+  ],
+);
+```
+
+# Contact
+If you have anything you want to inform me ([@yama-yeah](https://github.com/yama-yeah)), such as suggestions to enhance this package or functionalities you want etc, feel free to make [issues on GitHub](https://github.com/yama-yeah/flutter_anchorlable/issues)
