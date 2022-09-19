@@ -1,3 +1,4 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Release new package!
+* This package can jump to widget like a html internal link!
