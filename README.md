@@ -42,11 +42,9 @@ It requires a `Key` and `AnchorlableController`.
 By using `AnchorlableController`, it is possible to scroll the `widget` with the `Key` existing in the `children`.
 ```dart
 final controller=AnchorlableController();
-const bodyKey = GlobalObjectKey('body');
 const anchorKey = GlobalObjectKey('anchor');
 AnchorlableScrollColumn(
   controller:controller,
-  key: bodyKey,
   children:[
     ...
     Container(
@@ -64,11 +62,9 @@ AnchorlableScrollColumn(
 
 ```dart
 final controller=AnchorlableController();
-const bodyKey = GlobalObjectKey('body');
 const anchorKey = GlobalObjectKey('anchor');
 AnchorlableScrollRow(
   controller:controller,
-  key: bodyKey,
   children:[
     ...
     Container(
@@ -86,19 +82,12 @@ AnchorlableScrollRow(
 Unlike `AnchorlableScrollColumn`, it requires some work to handle `AnchorlableController`.
 
 ```dart
-final controller = AnchorlableController(
-  absoluteKey: bodyKey,
-  endKey: endKey,
-);
-const bodyKey = GlobalObjectKey('body');
-const endKey = GlobalObjectKey('end');
+final controller = AnchorlableController();
 const anchorKey = GlobalObjectKey('anchor');
 CustomScrollView(
-  key: bodyKey,
   controller: controller,
   slivers: [
-    AnchorlableSliverColumn(
-      endKey: endKey,
+    AnchorlableSliverColumn(,
       children: [
         ...
         Container(
@@ -117,19 +106,12 @@ CustomScrollView(
 `AnchorlableSliverRow` is a side-by-side version of `AnchorlableSliverColumn`.
 
 ```dart
-final controller = AnchorlableController(
-  absoluteKey: bodyKey,
-  endKey: endKey,
-);
-const bodyKey = GlobalObjectKey('body');
-const endKey = GlobalObjectKey('end');
+final controller = AnchorlableController();
 const anchorKey = GlobalObjectKey('anchor');
 CustomScrollView(
-  key: bodyKey,
   controller: controller,
   slivers: [
     AnchorlableSliverRow(
-      endKey: endKey,
       children: [
         ...
         Container(

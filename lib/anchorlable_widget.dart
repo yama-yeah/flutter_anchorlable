@@ -13,7 +13,7 @@ import 'anchorlable_controller.dart';
 /// any. If there is no ambient directionality, and a text direction is going
 /// to be necessary to disambiguate `start` or `end` values for the
 /// [crossAxisAlignment], the [textDirection] must not be null.
-// ignore: must_be_immutable
+
 class AnchorlableScrollColumn extends ScrollView {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
@@ -22,9 +22,8 @@ class AnchorlableScrollColumn extends ScrollView {
   final VerticalDirection verticalDirection;
   final TextBaseline? textBaseline;
   final List<Widget> children;
-  Key? endKey;
-  AnchorlableScrollColumn(
-      {required Key key,
+  const AnchorlableScrollColumn(
+      {super.key,
       this.mainAxisAlignment = MainAxisAlignment.start,
       this.mainAxisSize = MainAxisSize.max,
       this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -47,18 +46,12 @@ class AnchorlableScrollColumn extends ScrollView {
       super.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
       super.restorationId,
       super.clipBehavior = Clip.hardEdge})
-      : super(key: key, controller: controller) {
-    endKey = endKey ?? GlobalObjectKey('${key as GlobalObjectKey}end');
-    controller.setEnd(endKey as GlobalKey);
-    controller.setAbsolute(key as GlobalKey);
-    controller.initialJump();
-  }
+      : super(controller: controller);
 
   @override
   List<Widget> buildSlivers(BuildContext context) {
     return [
       AnchorlableSliverColumn(
-        endKey: endKey!,
         children: children,
       )
     ];
@@ -76,11 +69,9 @@ class AnchorlableScrollColumn extends ScrollView {
 /// any. If there is no ambient directionality, and a text direction is going
 /// to be necessary to disambiguate `start` or `end` values for the
 /// [crossAxisAlignment], the [textDirection] must not be null.
-// ignore: must_be_immutable
 class AnchorlableSliverColumn extends SliverFillRemaining {
   AnchorlableSliverColumn({
     super.key,
-    required Key endKey,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
     this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -100,11 +91,6 @@ class AnchorlableSliverColumn extends SliverFillRemaining {
             verticalDirection: verticalDirection,
             children: [
               ...children,
-              SizedBox(
-                key: endKey,
-                height: 0,
-                width: 0,
-              )
             ],
           ),
         );
@@ -117,7 +103,6 @@ class AnchorlableSliverColumn extends SliverFillRemaining {
   final List<Widget> children;
 }
 
-// ignore: must_be_immutable
 /// Creates a horizontal array of children.
 ///
 /// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and
@@ -139,10 +124,8 @@ class AnchorlableScrollRow extends ScrollView {
   final VerticalDirection verticalDirection;
   final TextBaseline? textBaseline;
   final List<Widget> children;
-  Key? endKey;
-  AnchorlableScrollRow(
-      {required Key key,
-      this.endKey,
+  const AnchorlableScrollRow(
+      {super.key,
       this.mainAxisAlignment = MainAxisAlignment.start,
       this.mainAxisSize = MainAxisSize.max,
       this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -165,12 +148,8 @@ class AnchorlableScrollRow extends ScrollView {
       super.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
       super.restorationId,
       super.clipBehavior = Clip.hardEdge})
-      : super(key: key, controller: controller) {
-    controller.setAbsolute(key as GlobalKey);
-    endKey = endKey ?? GlobalObjectKey('${key as GlobalObjectKey}end');
-    controller.setEnd(endKey as GlobalKey);
-    controller.initialJump();
-  }
+      : super(controller: controller);
+
   @override
   List<Widget> buildSlivers(BuildContext context) {
     return [
@@ -181,7 +160,6 @@ class AnchorlableScrollRow extends ScrollView {
         textBaseline: textBaseline,
         textDirection: textDirection,
         verticalDirection: verticalDirection,
-        endKey: endKey!,
         children: children,
       )
     ];
@@ -203,7 +181,6 @@ class AnchorlableScrollRow extends ScrollView {
 /// must not be null.
 class AnchorlableSliverRow extends SliverFillRemaining {
   AnchorlableSliverRow({
-    required Key endKey,
     super.key,
     super.hasScrollBody = false,
     super.fillOverscroll,
@@ -224,11 +201,6 @@ class AnchorlableSliverRow extends SliverFillRemaining {
           verticalDirection: verticalDirection,
           children: [
             ...children,
-            SizedBox(
-              key: endKey,
-              height: 0,
-              width: 0,
-            )
           ],
         ));
 }
