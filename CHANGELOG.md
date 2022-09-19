@@ -1,3 +1,6 @@
+## 0.1.1
+* fix animateTo
+
 ## 0.1.0
 * fix bug about scroll
 * Modifications to simplify procedures

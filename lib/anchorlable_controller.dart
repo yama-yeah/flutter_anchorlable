@@ -67,9 +67,10 @@ class AnchorlableController extends ScrollController
   @override
   Future<void> animateToAnchor(GlobalKey anchorKey,
       {required Duration duration, required Curve curve}) async {
-    await super
-        .position
-        .ensureVisible(anchorKey.currentContext!.findRenderObject()!);
+    await super.position.ensureVisible(
+        anchorKey.currentContext!.findRenderObject()!,
+        curve: curve,
+        duration: duration);
     //animateTo(_getAnchorPosition(anchorKey),
     //duration: duration, curve: curve);
   }
