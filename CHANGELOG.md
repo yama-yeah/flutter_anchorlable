@@ -1,3 +1,6 @@
+## 0.0.3
+* add information about this package
+
 ## 0.0.2
 * add gif to readme
 

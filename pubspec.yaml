@@ -1,6 +1,6 @@
 name: flutter_anchorlable
 description: This package provides freely scrollable widgets and their controllers, with key as the anchor.
-version: 0.0.2
+version: 0.0.3
 homepage: https://yama-yeah.github.io/flutter_anchorlable/#/
 repository: https://github.com/yama-yeah/flutter_anchorlable
 
