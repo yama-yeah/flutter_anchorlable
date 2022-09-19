@@ -41,8 +41,12 @@ class MyHomePage extends StatelessWidget {
       );
     }
 
-    Widget jumpButton(String data, GlobalKey anchor) => TextButton(
-          onPressed: () => anchorlableBodyController.jumpToAnchor(anchor),
+    Widget animateJumpButton(String data, GlobalKey anchor) => TextButton(
+          onPressed: () async {
+            await anchorlableBodyController.animateToAnchor(anchor,
+                duration: const Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn);
+          },
           child: Text(
             data,
             style: const TextStyle(fontSize: 30, color: Colors.black),
@@ -104,9 +108,9 @@ class MyHomePage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                jumpButton('works', worksKey),
-                jumpButton('Intro', introKey),
-                jumpButton('Contact', contactKey),
+                animateJumpButton('works', worksKey),
+                animateJumpButton('Intro', introKey),
+                animateJumpButton('Contact', contactKey),
               ],
             ),
           ),
@@ -174,7 +178,7 @@ class MyHomePage extends StatelessWidget {
                         'https://github.com/yama-yeah/glassmorphism_widgets'),
                     work(
                         'flutter_anchorlable',
-                        'https://user-images.githubusercontent.com/82094614/190928346-6dded7dd-abcf-40a2-90a8-cd9f6b43f7ba.gif',
+                        'https://user-images.githubusercontent.com/82094614/190932053-f3228df0-d264-4427-a17b-bce43f130fa7.gif',
                         'https://github.com/yama-yeah/flutter_anchorlable'),
                   ],
                 ),
