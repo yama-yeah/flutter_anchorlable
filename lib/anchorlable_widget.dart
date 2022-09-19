@@ -13,7 +13,6 @@ import 'anchorlable_controller.dart';
 /// any. If there is no ambient directionality, and a text direction is going
 /// to be necessary to disambiguate `start` or `end` values for the
 /// [crossAxisAlignment], the [textDirection] must not be null.
-
 class AnchorlableScrollColumn extends ScrollView {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
