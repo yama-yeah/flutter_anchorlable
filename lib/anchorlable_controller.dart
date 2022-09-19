@@ -94,9 +94,10 @@ class AnchorlableController extends ScrollController
     final diff = super.position.axis == Axis.vertical
         ? endPoint - anchorOffset.dy
         : endPoint - anchorOffset.dx;
-    final jumpingPosition = super.position.axis == Axis.vertical
-        ? anchorOffset.dy - absoluteOffset.dy + super.offset
-        : anchorOffset.dx - absoluteOffset.dx + super.offset;
+    final jumpingPosition = (super.position.axis == Axis.vertical
+            ? anchorOffset.dy - absoluteOffset.dy + super.offset
+            : anchorOffset.dx - absoluteOffset.dx + super.offset) +
+        super.offset;
     if (diff < super.position.viewportDimension) {
       return endPoint - super.position.viewportDimension;
     }
