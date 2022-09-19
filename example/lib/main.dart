@@ -122,7 +122,7 @@ class MyHomePage extends StatelessWidget {
         onPressed: () async => await launchUrl(Uri.parse(url)),
         child: Column(
           children: [
-            Text(data, style: TextStyle(fontSize: 48)),
+            Text(data, style: const TextStyle(fontSize: 48)),
             Image.network(
               iamgeUrl,
               width: 400,
@@ -134,7 +134,6 @@ class MyHomePage extends StatelessWidget {
       body: AnchorlableScrollColumn(
         shrinkWrap: true,
         controller: anchorlableBodyController,
-        key: bodyKey,
         children: [
           Header(),
           const SizedBox(
@@ -196,7 +195,6 @@ class MyHomePage extends StatelessWidget {
 }
 
 final anchorlableBodyController = AnchorlableController();
-const bodyKey = GlobalObjectKey('body');
 const introKey = GlobalObjectKey('intro');
 const worksKey = GlobalObjectKey('works');
 const contactKey = GlobalObjectKey('contact');

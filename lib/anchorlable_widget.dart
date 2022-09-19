@@ -13,6 +13,7 @@ import 'anchorlable_controller.dart';
 /// any. If there is no ambient directionality, and a text direction is going
 /// to be necessary to disambiguate `start` or `end` values for the
 /// [crossAxisAlignment], the [textDirection] must not be null.
+
 class AnchorlableScrollColumn extends ScrollView {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
@@ -21,9 +22,8 @@ class AnchorlableScrollColumn extends ScrollView {
   final VerticalDirection verticalDirection;
   final TextBaseline? textBaseline;
   final List<Widget> children;
-  Key? endKey;
-  AnchorlableScrollColumn(
-      {required Key key,
+  const AnchorlableScrollColumn(
+      {super.key,
       this.mainAxisAlignment = MainAxisAlignment.start,
       this.mainAxisSize = MainAxisSize.max,
       this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -46,28 +46,32 @@ class AnchorlableScrollColumn extends ScrollView {
       super.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
       super.restorationId,
       super.clipBehavior = Clip.hardEdge})
-      : super(key: key, controller: controller) {
-    endKey = endKey ?? GlobalObjectKey('${key as GlobalObjectKey}end');
-    controller.setEnd(endKey as GlobalKey);
-    controller.setAbsolute(key as GlobalKey);
-    controller.initialJump();
-  }
+      : super(controller: controller);
 
   @override
   List<Widget> buildSlivers(BuildContext context) {
     return [
       AnchorlableSliverColumn(
-        endKey: endKey!,
         children: children,
       )
     ];
   }
 }
 
+/// Creates a vertical array of children.
+///
+/// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and
+/// [verticalDirection] arguments must not be null.
+/// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+/// [textBaseline] must not be null.
+///
+/// The [textDirection] argument defaults to the ambient [Directionality], if
+/// any. If there is no ambient directionality, and a text direction is going
+/// to be necessary to disambiguate `start` or `end` values for the
+/// [crossAxisAlignment], the [textDirection] must not be null.
 class AnchorlableSliverColumn extends SliverFillRemaining {
   AnchorlableSliverColumn({
     super.key,
-    required Key endKey,
     this.mainAxisAlignment = MainAxisAlignment.start,
     this.mainAxisSize = MainAxisSize.max,
     this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -87,11 +91,6 @@ class AnchorlableSliverColumn extends SliverFillRemaining {
             verticalDirection: verticalDirection,
             children: [
               ...children,
-              SizedBox(
-                key: endKey,
-                height: 0,
-                width: 0,
-              )
             ],
           ),
         );
@@ -104,6 +103,19 @@ class AnchorlableSliverColumn extends SliverFillRemaining {
   final List<Widget> children;
 }
 
+/// Creates a horizontal array of children.
+///
+/// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and
+/// [verticalDirection] arguments must not be null.
+/// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+/// [textBaseline] must not be null.
+///
+/// The [textDirection] argument defaults to the ambient [Directionality], if
+/// any. If there is no ambient directionality, and a text direction is going
+/// to be necessary to determine the layout order (which is always the case
+/// unless the row has no children or only one child) or to disambiguate
+/// `start` or `end` values for the [mainAxisAlignment], the [textDirection]
+/// must not be null.
 class AnchorlableScrollRow extends ScrollView {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
@@ -112,10 +124,8 @@ class AnchorlableScrollRow extends ScrollView {
   final VerticalDirection verticalDirection;
   final TextBaseline? textBaseline;
   final List<Widget> children;
-  Key? endKey;
-  AnchorlableScrollRow(
-      {required Key key,
-      this.endKey,
+  const AnchorlableScrollRow(
+      {super.key,
       this.mainAxisAlignment = MainAxisAlignment.start,
       this.mainAxisSize = MainAxisSize.max,
       this.crossAxisAlignment = CrossAxisAlignment.center,
@@ -138,12 +148,8 @@ class AnchorlableScrollRow extends ScrollView {
       super.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
       super.restorationId,
       super.clipBehavior = Clip.hardEdge})
-      : super(key: key, controller: controller) {
-    controller.setAbsolute(key as GlobalKey);
-    endKey = endKey ?? GlobalObjectKey('${key as GlobalObjectKey}end');
-    controller.setEnd(endKey as GlobalKey);
-    controller.initialJump();
-  }
+      : super(controller: controller);
+
   @override
   List<Widget> buildSlivers(BuildContext context) {
     return [
@@ -154,16 +160,27 @@ class AnchorlableScrollRow extends ScrollView {
         textBaseline: textBaseline,
         textDirection: textDirection,
         verticalDirection: verticalDirection,
-        endKey: endKey!,
         children: children,
       )
     ];
   }
 }
 
+/// Creates a horizontal array of children.
+///
+/// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and
+/// [verticalDirection] arguments must not be null.
+/// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+/// [textBaseline] must not be null.
+///
+/// The [textDirection] argument defaults to the ambient [Directionality], if
+/// any. If there is no ambient directionality, and a text direction is going
+/// to be necessary to determine the layout order (which is always the case
+/// unless the row has no children or only one child) or to disambiguate
+/// `start` or `end` values for the [mainAxisAlignment], the [textDirection]
+/// must not be null.
 class AnchorlableSliverRow extends SliverFillRemaining {
   AnchorlableSliverRow({
-    required Key endKey,
     super.key,
     super.hasScrollBody = false,
     super.fillOverscroll,
@@ -184,11 +201,6 @@ class AnchorlableSliverRow extends SliverFillRemaining {
           verticalDirection: verticalDirection,
           children: [
             ...children,
-            SizedBox(
-              key: endKey,
-              height: 0,
-              width: 0,
-            )
           ],
         ));
 }
