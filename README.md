@@ -82,5 +82,69 @@ AnchorlableScrollRow(
 );
 ```
 
+`AnchorlableSliverColumn` is an AnchorlableWidget that can be used with `CustomScrollView`.
+Unlike `AnchorlableScrollColumn`, it requires some work to handle `AnchorlableController`.
+
+```dart
+final controller = AnchorlableController(
+  absoluteKey: bodyKey,
+  endKey: endKey,
+);
+const bodyKey = GlobalObjectKey('body');
+const endKey = GlobalObjectKey('end');
+const anchorKey = GlobalObjectKey('anchor');
+CustomScrollView(
+  key: bodyKey,
+  controller: controller,
+  slivers: [
+    AnchorlableSliverColumn(
+      endKey: endKey,
+      children: [
+        ...
+        Container(
+          child: Text(
+            key:anchorKey,
+            'Widgets you want to anchor'
+            ),
+        ),
+        ...
+      ],
+    ),
+  ],
+);
+```
+
+`AnchorlableSliverRow` is a side-by-side version of `AnchorlableSliverColumn`.
+
+```dart
+final controller = AnchorlableController(
+  absoluteKey: bodyKey,
+  endKey: endKey,
+);
+const bodyKey = GlobalObjectKey('body');
+const endKey = GlobalObjectKey('end');
+const anchorKey = GlobalObjectKey('anchor');
+CustomScrollView(
+  key: bodyKey,
+  controller: controller,
+  slivers: [
+    AnchorlableSliverRow(
+      endKey: endKey,
+      children: [
+        ...
+        Container(
+          child: Text(
+            key:anchorKey,
+            'Widgets you want to anchor'
+            ),
+        ),
+        ...
+      ],
+    ),
+  ],
+);
+```
+
+
 # Contact
 If you have anything you want to inform me ([@yama-yeah](https://github.com/yama-yeah)), such as suggestions to enhance this package or functionalities you want etc, feel free to make [issues on GitHub](https://github.com/yama-yeah/flutter_anchorlable/issues)

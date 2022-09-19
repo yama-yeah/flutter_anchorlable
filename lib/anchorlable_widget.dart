@@ -13,6 +13,7 @@ import 'anchorlable_controller.dart';
 /// any. If there is no ambient directionality, and a text direction is going
 /// to be necessary to disambiguate `start` or `end` values for the
 /// [crossAxisAlignment], the [textDirection] must not be null.
+// ignore: must_be_immutable
 class AnchorlableScrollColumn extends ScrollView {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
@@ -64,6 +65,18 @@ class AnchorlableScrollColumn extends ScrollView {
   }
 }
 
+/// Creates a vertical array of children.
+///
+/// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and
+/// [verticalDirection] arguments must not be null.
+/// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+/// [textBaseline] must not be null.
+///
+/// The [textDirection] argument defaults to the ambient [Directionality], if
+/// any. If there is no ambient directionality, and a text direction is going
+/// to be necessary to disambiguate `start` or `end` values for the
+/// [crossAxisAlignment], the [textDirection] must not be null.
+// ignore: must_be_immutable
 class AnchorlableSliverColumn extends SliverFillRemaining {
   AnchorlableSliverColumn({
     super.key,
@@ -104,6 +117,20 @@ class AnchorlableSliverColumn extends SliverFillRemaining {
   final List<Widget> children;
 }
 
+// ignore: must_be_immutable
+/// Creates a horizontal array of children.
+///
+/// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and
+/// [verticalDirection] arguments must not be null.
+/// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+/// [textBaseline] must not be null.
+///
+/// The [textDirection] argument defaults to the ambient [Directionality], if
+/// any. If there is no ambient directionality, and a text direction is going
+/// to be necessary to determine the layout order (which is always the case
+/// unless the row has no children or only one child) or to disambiguate
+/// `start` or `end` values for the [mainAxisAlignment], the [textDirection]
+/// must not be null.
 class AnchorlableScrollRow extends ScrollView {
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
@@ -161,6 +188,19 @@ class AnchorlableScrollRow extends ScrollView {
   }
 }
 
+/// Creates a horizontal array of children.
+///
+/// The [mainAxisAlignment], [mainAxisSize], [crossAxisAlignment], and
+/// [verticalDirection] arguments must not be null.
+/// If [crossAxisAlignment] is [CrossAxisAlignment.baseline], then
+/// [textBaseline] must not be null.
+///
+/// The [textDirection] argument defaults to the ambient [Directionality], if
+/// any. If there is no ambient directionality, and a text direction is going
+/// to be necessary to determine the layout order (which is always the case
+/// unless the row has no children or only one child) or to disambiguate
+/// `start` or `end` values for the [mainAxisAlignment], the [textDirection]
+/// must not be null.
 class AnchorlableSliverRow extends SliverFillRemaining {
   AnchorlableSliverRow({
     required Key endKey,
